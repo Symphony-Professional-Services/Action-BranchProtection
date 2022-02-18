@@ -1,0 +1,25 @@
+{
+  "name": "Action-BranchProtection",
+  "version": "1.0.0",
+  "description": "An action to add branch protection to your github repository",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build index.js --license licenses.txt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Symphony-Professional-Services/Action-BranchProtection.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Symphony-Professional-Services/Action-BranchProtection/issues"
+  },
+  "homepage": "https://github.com/Symphony-Professional-Services/Action-BranchProtection#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0"
+  }
+}
