@@ -8471,15 +8471,37 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(115);
 const github = __nccwpck_require__(3007);
 
+async function run(octokit) {
+
+    // Doc: https://docs.github.com/en/rest/reference/branches#update-branch-protection
+    return await octokit.request('PUT /repos/{owner}/{repo}/branches/{branch}/protection', {
+        owner: 'Symphony-Professional-Services',
+        repo: 'Bot-Zeus',
+        branch: 'master',
+        required_status_checks: {
+            strict: true
+        },
+        required_pull_request_reviews: {
+            dismiss_stale_reviews: true,
+            required_approving_review_count: 1,
+        },
+    })
+}
+
+
 try {
-    // `who-to-greet` input defined in action metadata file
-    const nameToGreet = core.getInput('who-to-greet');
-    console.log(`Hello ${nameToGreet}!`);
-    const time = (new Date()).toTimeString();
-    core.setOutput("time", time);
-    // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`);
+    // This should be a token with access to your repository scoped in as a secret.
+    // The YML workflow will need to set myToken with the GitHub Secret Token
+    // myToken: ${{ secrets.GITHUB_TOKEN }}
+    // https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
+    const myToken = core.getInput('repo-token');
+
+    const octokit = github.getOctokit(myToken);
+    // You can also pass in additional options as a second parameter to getOctokit
+    // const octokit = github.getOctokit(myToken, {userAgent: "MyActionVersion1"});
+
+    // run octokit
+    run(octokit).then(r => console.log(r));
 } catch (error) {
     core.setFailed(error.message);
 }
