@@ -1,23 +1,26 @@
 # Action-BranchProtection
 
-An action to add branch protection to your github repository.
+An action to add branch protection to your GitHub repository.
 
 Run `npm build` to compile index.js.
 
 ## Inputs
 
-### `who-to-greet`
+### `repo-token`
 
-**Required** The name of the person to greet. Default `"World"`.
-
-## Outputs
-
-### `time`
-
-The time we greeted you.
+**Required** The GITHUB_TOKEN to call the GitHub API.
 
 ## Example usage
 
-    uses: actions/Action-BranchProtection@v0.1
-    with:
-      who-to-greet: 'Mona the Octocat'
+Example of a job calling this action:
+
+    branch-protection:
+        name: Branch Protection
+        runs-on: ubuntu-latest
+        environment: local
+        steps:
+          - name: Update branch protection
+            id: hello
+            uses: Symphony-Professional-Services/Action-BranchProtection@v0.1
+            with:
+              repo-token: ${{ secrets.GITHUB_TOKEN }}
