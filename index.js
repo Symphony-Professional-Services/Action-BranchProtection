@@ -15,7 +15,7 @@ async function run(octokit) {
             checks: [
             ]
         },
-        enforce_admins: null,
+        enforce_admins: false,
         required_pull_request_reviews: {
             dismissal_restrictions: {},
             dismiss_stale_reviews: true,
@@ -23,7 +23,7 @@ async function run(octokit) {
             required_approving_review_count: 1,
             bypass_pull_request_allowances: null
         },
-        restrictions: null
+        restrictions: false
     })
 }
 
