@@ -8,12 +8,7 @@ async function run(octokit) {
         owner: 'Symphony-Professional-Services',
         repo: 'Bot-Zeus',
         branch: 'master',
-        required_status_checks: {
-            strict: true,
-            contexts: [
-                'default'
-            ]
-        },
+        required_status_checks: null,
         enforce_admins: null,
         required_pull_request_reviews: {
             dismissal_restrictions: {},
